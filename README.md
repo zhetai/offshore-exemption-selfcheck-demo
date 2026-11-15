@@ -174,14 +174,30 @@ npm test
 ├── tests
 │   └── scoring.test.js             # 19 个单元测试（node）
 ├── docs
+│   ├── SOURCES.md                  # 来源仓库登记与脱敏边界
 │   └── screenshots                 # 截图与拍摄说明
 ├── README.md
 ├── DEMO.md                         # 演示脚本
 ├── SECURITY.md                     # 安全策略与数据处理
 ├── LICENSE                         # MIT
 ├── package.json                    # 仅提供 npm test，无任何依赖
+├── .gitattributes                  # 换行符与二进制规则
 └── .gitignore
 ```
+
+## 来源仓库 · Source repositories
+
+本仓库是一个独立演示，**不包含**下列仓库的代码或数据。它们同属香港公司 / 离岸合规方向的项目集，作为本工具的上下文与来源登记在案（完整清单见 [`docs/SOURCES.md`](docs/SOURCES.md)）。
+
+| 仓库（均为 private） | 角色 | 技术栈 | 与本品的关系 |
+| --- | --- | --- | --- |
+| `wanqushangpai-odoo` | 香港公司 Odoo 18 记账中台：SME-FRS 科目表、多币种流水采集、离岸豁免辅助核算 | Odoo 18 · Python · PostgreSQL · Docker | 账务与审计底稿来源；本工具的自检项与之对应 |
+| `wanqushangpai-odoo-infra` | 上述中台的一键部署与运维 | Docker Compose · Nginx · Certbot | 部署层，与本工具无运行时依赖 |
+| `group-sop` | 竞标 / 经纪 / PDF 解析引擎 | React 19 · TypeScript · Cloudflare Workers · D1 · R2 | 同一业务方向的工程样例 |
+| `crypto-reconciliation-cleaner` | 离线加密交易对账清洗器（单文件） | 单文件 HTML/JS | 同一设计取向：零依赖、数据不出本机 |
+| `outshore` | 离岸证据链技术劳务落地页 | 单文件 HTML/JS | Upwork 服务端页面 |
+
+> 以上仓库目前为私有，公开链接无法直接访问；如需演示或源码 walkthrough，请通过 [GitHub 主页](https://github.com/zhetai) 联系。本仓库不复制它们的代码，也不含其客户或业务数据。
 
 ## 脱敏说明
 
@@ -190,6 +206,7 @@ npm test
 - 所有证据项均为通用描述（「已签署的销售合同」「覆盖申报期的银行月结单」），不含具体主体名称。
 - 示例个案 `Sample Case A（脱敏）` 的状态与备注为虚构的演示内容，用于展示部分齐备、缺失与不适用的混合情形。
 - 不含 `.env`、密钥、令牌、私钥、内部域名、邮箱或客户名称；若后续要接入真实数据，请自行脱敏并遵循 `SECURITY.md`。
+- 未复制任何来源仓库（`wanqushangpai-odoo` 等 5 个私有仓库）的代码或业务数据，边界见 [`docs/SOURCES.md`](docs/SOURCES.md)。
 - 提交前已对仓库执行高置信 secret 扫描（GitHub 令牌、私钥、云厂商密钥、`.env`、`node_modules`、`dist` 等），结果为零命中。
 
 如果在本仓库中发现疑似敏感信息，请按 `SECURITY.md` 的方式私下报告，不要公开提交 issue。
