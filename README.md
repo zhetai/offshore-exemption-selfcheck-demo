@@ -12,10 +12,12 @@
 
 | 直接体验 | 入口 | 状态 |
 | --- | --- | --- |
-| ▶ 在线演示（免安装） | 线上地址 | 🔧 **待部署** · human action required |
+| ▶ 在线演示（免安装） | **<https://zhetai.github.io/offshore-exemption-selfcheck-demo/>** | ✅ 已上线 · GitHub Pages，随 `main` 自动部署 |
 | 🎬 60 秒演示视频 | Loom / YouTube（不公开） | 🔧 **待录制** · human action required |
 
-> 🔧 上述两个入口是明确标注的占位项：本仓库尚未部署线上版本、也未录制视频（见 [`DEMO.md`](DEMO.md) 的发布清单）。在有线上地址之前，请不要通过「下载仓库再找 index.html」的方式体验——那正是本工具想避免的客户体验。
+> 在线演示无需注册、无需下载，打开即用；页面由 GitHub Pages 直接托管 `index.html`，渲染结果与仓库内截图逐字节一致。
+>
+> 🔧 视频入口仍是占位项，录制后替换即可（见 [`DEMO.md`](DEMO.md) 的发布清单）。
 
 **Demo only.** 仅做材料完整性自检，不构成税务或法律意见，不保证离岸豁免获批。
 
@@ -164,7 +166,9 @@ value  ∈ { present: 1, partial: 0.5, missing: 0 }   // status = na 时不计�
 
 ## 快速开始
 
-无需安装依赖、无需构建，双击打开即可：
+**在线体验（推荐）：** <https://zhetai.github.io/offshore-exemption-selfcheck-demo/> —— 无需安装、无需注册。
+
+本地运行无需依赖、无需构建，双击打开即可：
 
 ```bash
 # 方式一：直接打开

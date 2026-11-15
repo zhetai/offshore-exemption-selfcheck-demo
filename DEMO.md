@@ -67,21 +67,28 @@ $chrome = "C:\Program Files\Google\Chrome\Application\chrome.exe"
 
 ## 发布清单（在线演示 / 60 秒视频）
 
-README 首屏的两个入口目前是**明确标注的占位项**，需要人工补齐。任选一种托管方式即可，静态站点无需构建：
+**当前状态：在线演示已上线 ✅** —— <https://zhetai.github.io/offshore-exemption-selfcheck-demo/>
+
+由 GitHub Pages 直接托管仓库根目录（`main` / root），无需构建；`main` 更新后自动重新部署。已核验：
+
+- 首页返回 HTTP 200，`assets/css`、`assets/js` 全部资源可公开访问；
+- 无头 Chrome 渲染线上页面的截图与仓库内 `assets/screenshot-main.png` **SHA-256 完全一致**（逐字节相同）。
+
+如需换用其他托管方式，静态站点同样无需构建：
 
 | 方式 | 操作 | 得到的链接 |
 | --- | --- | --- |
+| GitHub Pages（当前） | Settings → Pages → Deploy from branch → `main` / root | `https://zhetai.github.io/offshore-exemption-selfcheck-demo/` |
 | Cloudflare Pages | Direct Upload，上传仓库根目录（`index.html` + `assets/`） | `https://<project>.pages.dev` |
-| GitHub Pages | 仓库 Settings → Pages → Deploy from branch → `main` / root | `https://zhetai.github.io/offshore-exemption-selfcheck-demo/` |
 | Netlify Drop | 拖拽文件夹上传 | `https://<name>.netlify.app` |
 
-部署完成后：
+剩余待办：
 
-1. 把 README 顶部 CTA 表格中的「🔧 待部署 · human action required」替换为真实链接；
-2. 录制 ≤ 60 秒讲解视频（Loom 不公开链接即可），替换「🔧 待录制」一行；
-3. 确认线上页面能直接打开（不要要求访客下载仓库）。
+1. ~~把 README 顶部 CTA 表格中的在线演示占位替换为真实链接~~ ✅ 已完成；
+2. 录制 ≤ 60 秒讲解视频（Loom 不公开链接即可），替换 README CTA 的「🔧 待录制」一行；
+3. 录制 `assets/demo.gif` 并替换 README 折叠块中的说明文字。
 
-> 🔧 `human_action_required`：在线演示地址、视频链接、`assets/demo.gif` 三项需要人工提供。在补齐之前，README 不会引导客户「下载后再找 index.html」。
+> 🔧 `human_action_required`：视频链接与 `assets/demo.gif` 两项需人工提供。在线演示已可用，请直接分享 <https://zhetai.github.io/offshore-exemption-selfcheck-demo/>。
 
 ## Upwork 作品集文案（可直接复制）
 
