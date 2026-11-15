@@ -11,9 +11,10 @@
 
 ## 报告安全问题
 
-请**不要**通过公开 issue 报告安全问题。请使用 GitHub 的私密报告渠道：
+请**不要**通过公开 issue 报告安全问题。
 
-> 仓库页面 → **Security** → **Report a vulnerability**（Private vulnerability reporting）
+1. 首选：仓库页面 → **Security** → **Report a vulnerability**（Private vulnerability reporting）。
+2. 如该入口不可用（例如私密仓库未开启私密报告），请通过仓库所有者的 GitHub 主页（<https://github.com/zhetai>）所列联系方式私下告知，并在信息中注明「security report」。
 
 报告中请包含：受影响的文件与版本、复现步骤、影响范围、可行的修复建议。我们会在 7 个工作日内回复，并在修复发布后致谢（如你希望匿名请注明）。
 
