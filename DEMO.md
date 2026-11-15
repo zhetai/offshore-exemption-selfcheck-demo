@@ -39,21 +39,22 @@ python -m http.server 8080
 
 ## 截图
 
-仓库已包含 `docs/screenshots/` 下的三张真实截图：
+仓库已包含以下真实截图（均由无头 Chrome 直接渲染，未做后期修补）：
 
 | 文件 | 内容 |
 | --- | --- |
-| `overview.png` | 主界面 1440×1080 |
-| `full-page.png` | 完整清单长图 1440×3300 |
-| `mobile.png` | 窄屏 520×1600 |
+| `assets/screenshot-main.png` | README 首屏主截图 1360×840 |
+| `docs/screenshots/overview.png` | 主界面 1440×1080 |
+| `docs/screenshots/full-page.png` | 完整清单长图 1440×3300 |
+| `docs/screenshots/mobile.png` | 窄屏 520×1600 |
 
 如需自行重新生成（需本机安装 Chrome）：
 
 ```powershell
 $chrome = "C:\Program Files\Google\Chrome\Application\chrome.exe"
 & $chrome --headless=new --no-sandbox --disable-gpu --hide-scrollbars `
-  --virtual-time-budget=4000 --window-size=1440,1080 `
-  --screenshot="docs\screenshots\overview.png" "file:///$PWD/index.html"
+  --virtual-time-budget=4000 --window-size=1360,840 `
+  --screenshot="assets\screenshot-main.png" "file:///$PWD/index.html"
 ```
 
 ## 可选的 GIF
@@ -62,4 +63,57 @@ $chrome = "C:\Program Files\Google\Chrome\Application\chrome.exe"
 
 - 时长 ≤ 15 秒，宽度 ≤ 1200px，文件 ≤ 3 MB；
 - 只演示步骤 4（补一项关键材料 → 结论变化）这一段，信息密度最高；
-- 输出为 `docs/screenshots/demo.gif`，并在 README 的「演示截图/GIF」章节引用。
+- 输出为 `assets/demo.gif`（README 的 `<details>` 折叠块已预留引用，放入后取消注释即可）。
+
+## 发布清单（在线演示 / 60 秒视频）
+
+README 首屏的两个入口目前是**明确标注的占位项**，需要人工补齐。任选一种托管方式即可，静态站点无需构建：
+
+| 方式 | 操作 | 得到的链接 |
+| --- | --- | --- |
+| Cloudflare Pages | Direct Upload，上传仓库根目录（`index.html` + `assets/`） | `https://<project>.pages.dev` |
+| GitHub Pages | 仓库 Settings → Pages → Deploy from branch → `main` / root | `https://zhetai.github.io/offshore-exemption-selfcheck-demo/` |
+| Netlify Drop | 拖拽文件夹上传 | `https://<name>.netlify.app` |
+
+部署完成后：
+
+1. 把 README 顶部 CTA 表格中的「🔧 待部署 · human action required」替换为真实链接；
+2. 录制 ≤ 60 秒讲解视频（Loom 不公开链接即可），替换「🔧 待录制」一行；
+3. 确认线上页面能直接打开（不要要求访客下载仓库）。
+
+> 🔧 `human_action_required`：在线演示地址、视频链接、`assets/demo.gif` 三项需要人工提供。在补齐之前，README 不会引导客户「下载后再找 index.html」。
+
+## Upwork 作品集文案（可直接复制）
+
+### English（粘贴到 Upwork Portfolio）
+
+**Title:** Offshore Exemption Material Self-Check Tool — HK Profits Tax Documentation Audit
+
+**Overview:**
+A lightweight, browser-only self-check tool for Hong Kong companies preparing an offshore profits claim. It turns a filing cabinet of contracts, bills of lading, bank statements and internal emails into one repeatable checklist: 26 evidence items across 7 categories, filtered by claim type (trading, service/commission, manufacturing, IP).
+
+Each item is marked ready / partial / missing / not applicable, and the tool immediately returns a weighted completeness score, blocking items, and a per-category gap list. Revenue recognised without matching bank statements, a trading claim without shipping documents, or a related-party list without pricing support are all flagged automatically. Export a JSON record for the file, or print to PDF for your accountant.
+
+Everything runs locally in the browser — no account, no upload, no analytics. Zero dependencies, 19 unit tests on the scoring engine.
+
+**Deliverables:** GitHub repository · bilingual README with screenshots · demo walkthrough (DEMO.md) · sanitized sample case · JSON/PDF export.
+
+**Skills:** HTML · JavaScript · Compliance Automation · Documentation Review · GitHub
+
+**Disclaimer:** Documentation completeness only. This is not tax, legal or accounting advice, and it does not guarantee that an offshore claim will be accepted. Consult a practising tax adviser before filing.
+
+### 中文对照（给香港客户看）
+
+**标题：** 离岸豁免材料自检工具 —— 香港利得税申报材料完整性盘点
+
+**简述：** 面向准备离岸豁免申请的香港公司，把散落在合同、提单、银行月结单与内部邮件里的证据，整理成一张可重复使用的自检清单：7 个类别、26 个证据项，按主张类型（货物买卖 / 服务佣金 / 制造加工 / 知识产权）自动筛选。
+
+每项标为「齐备 / 部分 / 缺失 / 不适用」后，立即得到加权评分、阻断项与按类别拆分的缺口清单：有收入却缺银行流水、买卖型个案缺提单、关联交易缺定价依据，都会被自动点名。可导出 JSON 留档，或打印成 PDF 交给会计师。
+
+全部在本机浏览器完成，无需账号、不上传、不埋点；零依赖，评分内核有 19 个单元测试。
+
+**交付物：** GitHub 仓库 · 含截图的双语 README · 演示走查脚本 · 脱敏示例个案 · JSON / PDF 导出。
+
+**技能标签：** HTML · JavaScript · 合规自动化 · 文档复核 · GitHub（与仓库 topics 对应：`html` `javascript` `compliance` `self-check` `offshore-exemption` `portfolio` `upwork`）
+
+**免责声明：** 仅做材料完整性自检，不构成税务或法律意见，不保证离岸豁免获批。正式提交前请咨询执业税务顾问。
