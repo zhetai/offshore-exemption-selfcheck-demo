@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="离岸豁免材料自检工具 — 按类别检查支持材料齐备程度，输出评分与缺口清单。仅作演示，不构成税务或法律意见。">
+<meta name="color-scheme" content="light dark">
+<title>离岸豁免材料自检 · Offshore Exemption Material Self-Check</title>
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#checklist">跳到材料清单</a>
+
+<header class="topbar">
+  <div class="brand">
+    <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 2.6 20 6v6.2c0 4.4-3.1 7.9-8 9.2-4.9-1.3-8-4.8-8-9.2V6l8-3.4Z"/>
+      <path d="m8.4 12.2 2.5 2.5 4.7-5" class="tick"/>
+    </svg>
+    <div class="brand-text">
+      <h1>离岸豁免材料自检</h1>
+      <p>Offshore Exemption Material Self-Check</p>
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <span class="badge">Demo only</span>
+    <button type="button" class="btn" id="btn-sample">载入示例</button>
+    <button type="button" class="btn" id="btn-export">导出 JSON</button>
+    <button type="button" class="btn" id="btn-print">打印 / PDF</button>
+    <button type="button" class="btn btn-ghost" id="btn-reset">重置</button>
+  </div>
+</header>
+
+<main class="layout">
+  <aside class="panel summary" aria-label="自检摘要">
+    <div class="ring-wrap">
+      <svg class="ring" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+        <circle class="ring-track" cx="60" cy="60" r="52"></circle>
+        <circle class="ring-value" id="ring-value" cx="60" cy="60" r="52"></circle>
+      </svg>
+      <div class="ring-text">
+        <span id="score">0</span>
+        <small>/ 100</small>
+      </div>
+    </div>
+
+    <p class="gate" id="gate" data-gate="blocked">存在阻断项，暂不可提交</p>
+
+    <dl class="counts" id="counts">
+      <div class="count" data-status="present"><dt>已齐备</dt><dd id="count-present">0</dd></div>
+      <div class="count" data-status="partial"><dt>部分具备</dt><dd id="count-partial">0</dd></div>
+      <div class="count" data-status="missing"><dt>缺失</dt><dd id="count-missing">0</dd></div>
+      <div class="count" data-status="na"><dt>不适用</dt><dd id="count-na">0</dd></div>
+    </dl>
+
+    <div class="controls">
+      <label for="scenario">主张类型</label>
+      <select id="scenario"></select>
+      <p class="hint" id="scenario-hint"></p>
+
+      <label for="case-name">个案代号</label>
+      <input id="case-name" type="text" maxlength="60" placeholder="例如 CASE-A（脱敏）" autocomplete="off">
+    </div>
+
+    <section class="findings" aria-live="polite">
+      <h2>检查提示 <span class="pill" id="finding-count">0</span></h2>
+      <ul id="findings"></ul>
+    </section>
+
+    <section class="scoring-note">
+      <h2>评分方式</h2>
+      <ul>
+        <li>关键项权重 5 · 重要项 3 · 辅助项 1</li>
+        <li>已齐备 100% · 部分具备 50% · 缺失 0% · 不适用不计入分母</li>
+        <li>存在阻断项即不可提交；≥ 90 分且无阻断项时可安排复核</li>
+      </ul>
+    </section>
+  </aside>
+
+  <section class="panel checklist" id="checklist" aria-label="材料清单">
+    <div class="checklist-head">
+      <div>
+        <h2>材料清单</h2>
+        <p>逐项标记证据齐备程度，评分与提示会即时更新。所有内容仅保存在本机浏览器。</p>
+      </div>
+      <p class="legend" aria-hidden="true">
+        <span><i data-status="present"></i>齐备</span>
+        <span><i data-status="partial"></i>部分</span>
+        <span><i data-status="missing"></i>缺失</span>
+        <span><i data-status="na"></i>不适用</span>
+      </p>
+    </div>
+    <div id="groups"></div>
+    <noscript>
+      <p class="empty-note">本工具需要启用 JavaScript 才能运行。</p>
+    </noscript>
+  </section>
+</main>
+
+<footer class="footer">
+  <p id="disclaimer"></p>
+  <p class="footer-meta">数据为本机模拟，示例内容已脱敏 · 版本 <span id="version">—</span></p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/js/data/checklist.js"></script>
+<script src="assets/js/core/scoring.js"></script>
+<script src="assets/js/ui/app.js"></script>
+</body>
+</html>

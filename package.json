@@ -1,0 +1,22 @@
+{
+  "name": "offshore-exemption-selfcheck-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bilingual (zh/en) browser-only self-check tool for the documentary package behind an offshore profits claim. Demo only; not tax or legal advice.",
+  "keywords": [
+    "upwork",
+    "portfolio",
+    "offshore-exemption",
+    "compliance",
+    "self-check",
+    "vanilla-js"
+  ],
+  "license": "MIT",
+  "author": "zhetai",
+  "scripts": {
+    "test": "node tests/scoring.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

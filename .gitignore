@@ -1,0 +1,33 @@
+# 依赖与构建产物
+node_modules/
+dist/
+build/
+coverage/
+
+# 环境与密钥
+.env
+.env.*
+*.pem
+*.key
+secrets/
+
+# 生成物：构建 / 自检报告（本地留档，不入库）
+reports/
+*.local.json
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 日志与临时文件
+*.log
+npm-debug.log*
+*.tmp
+*.bak
+
+# 本地需求书 / 任务说明（不随作品集发布）
+REQU.TXT
+REQU.txt
