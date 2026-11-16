@@ -31,3 +31,12 @@ npm-debug.log*
 # 本地需求书 / 任务说明（不随作品集发布）
 REQU.TXT
 REQU.txt
+
+# 截图 / GIF 临时文件：录屏与截图过程产物不入库
+assets/*.tmp.png
+assets/*.raw.png
+assets/recording/
+assets/demo.gif.part
+*.gif.part
+docs/screenshots/*.tmp.png
+docs/screenshots/recording/

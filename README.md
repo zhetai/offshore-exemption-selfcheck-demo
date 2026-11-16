@@ -1,12 +1,76 @@
 # 离岸豁免材料自检 · Offshore Exemption Material Self-Check
 
-> 一个零依赖的浏览器端自检工具：按类别盘点香港公司离岸豁免（offshore claim）支持材料的齐备程度，给出加权评分、阻断项与缺口清单，并可导出 JSON / PDF 报告。
+> 香港公司准备离岸豁免（offshore claim）？先用 10 分钟把材料盘一遍。
 >
-> A zero-dependency, browser-only self-check for the documentary package behind an offshore profits claim: weighted completeness score, blocking gates, gap list, and JSON / print-ready export.
+> Ten minutes to find out whether your offshore claim file is actually complete — before your accountant, your auditor, or the IRD asks.
+
+**一个真实的截止日期。** 一家做跨境贸易的香港中小企要在两周内交利得税报税表、并准备离岸豁免申请。会计同事手上有一个文件柜的合同、提单、银行月结单和往来邮件，却没人能立刻回答：材料够不够、还差哪几份、哪些缺口会让整份申请包直接站不住？
+
+**本工具做的事。** 打开网页 → 按 7 个类别逐项标记 26 个证据项的齐备程度（齐备 / 部分 / 缺失 / 不适用）→ 当场得到加权评分、阻断项提示与按类别拆分的缺口清单 → 导出 JSON 留档，或打印成 PDF 交给复核人。全程在浏览器本地完成，不上传、不联网。
+
+**可感知的变化。** 从「翻两小时文件柜、结论散在邮件里、换个人又要重来」，变成「一张可重复、可导出、可对比的自检表」。
+
+| 直接体验 | 入口 | 状态 |
+| --- | --- | --- |
+| ▶ 在线演示（免安装） | **<https://zhetai.github.io/offshore-exemption-selfcheck-demo/>** | ✅ 已上线 · GitHub Pages，随 `main` 自动部署 |
+| 🎬 60 秒演示视频 | Loom / YouTube（不公开） | 🔧 **待录制** · human action required |
+
+> 在线演示无需注册、无需下载，打开即用；页面由 GitHub Pages 直接托管 `index.html`，渲染结果与仓库内截图逐字节一致。
+>
+> 🔧 视频入口仍是占位项，录制后替换即可（见 [`DEMO.md`](DEMO.md) 的发布清单）。
 
 **Demo only.** 仅做材料完整性自检，不构成税务或法律意见，不保证离岸豁免获批。
 
-![工具主界面](docs/screenshots/overview.png)
+<img src="assets/screenshot-main.png" alt="离岸豁免材料自检工具主界面：左侧为评分环、结论与检查提示，右侧为 7 个类别共 26 个证据项的状态清单" width="100%">
+
+<p align="center"><sub>脱敏示例个案：70 分、存在阻断项 —— 分数不低，但结论仍是「暂不可提交」，因为关键材料缺失优先于总分。</sub></p>
+
+<details>
+<summary>🎬 10–15 秒核心交互演示（GIF 待补充）</summary>
+
+**human action required** — 录制「补一项关键材料 → 结论从阻断变为待复核」的 10–15 秒片段，保存为 `assets/demo.gif`（≤ 3 MB），然后用下面这段替换本段文字：
+
+```html
+<img src="assets/demo.gif" alt="补一项关键材料后，结论从阻断变为待复核" width="100%">
+```
+
+</details>
+
+---
+
+## 这工具适合你吗 · Fit check
+
+| 适合 | 不适合 |
+| --- | --- |
+| 首次准备离岸豁免、想先做内部材料盘点的香港中小贸易 / 服务公司 | 已进入正式审计程序、需要执业会计师出具意见的个案 |
+| 需要在报税季前把「还差哪几份」列成清单交给同事的会计 / 行政 | 需要计算应缴税额、处理两级制税率或代填报税表的场景 |
+| 希望把每年主张口径记录成可对比文件、方便交接的团队 | 关联交易复杂、需要转让定价分析的个案 |
+| 想先自查、再带着材料去见税务顾问的公司负责人 | 需要电子签章、时间戳或审计级存证的流程 |
+
+以上为**适用边界说明**，不构成税务或法律意见；是否申请豁免、如何申报，请咨询执业税务顾问。
+
+## 传统做法 vs 使用本工具
+
+*（演示性对比，取自项目设定，不是审计结论或客户实测数据。）*
+
+| 环节 | 传统做法 | 使用本工具 | 可感知的差别 |
+| --- | --- | --- | --- |
+| 材料盘点 | 顾问凭经验逐页翻文件柜，结论口头传达 | 26 个证据项按 7 个类别固定成清单，逐项标记 | 盘点范围可重复，不依赖某位同事的记忆 |
+| 缺口识别 | 「大概还差提单」——具体差哪几份、哪一份是致命的，说不清 | 关键项缺失直接阻断，其余缺口按类别列成清单 | 分得清「补一下就行」和「站不住」 |
+| 交接一致性 | 结论散在邮件和聊天记录里，换人接手要重做一遍 | 状态与缺口备注存在本机，导出 JSON / PDF 交接 | 同一份清单可对比不同年度、不同个案 |
+
+## 设计决策 · Design decisions
+
+面向合规场景，这个工具做了几个刻意的「减法」：
+
+| 决策 | 为什么 | 代价 |
+| --- | --- | --- |
+| 单页、零依赖、无构建 | 客户双击即可打开，不受 CDN、构建工具或公司网络策略影响；审阅者也不必先 `npm install` | 放弃组件框架带来的开发效率 |
+| 数据只在浏览器本地 | 材料清单涉及客户个案信息，不该经过任何服务器；不联网就没有泄露路径 | 无跨设备同步、无多人协作 |
+| 评分内核与界面分离 | 加权、门禁、规则引擎是纯函数，可被 19 个单元测试逐条验证 | 需维护一层明确的数据契约 |
+| 导出 JSON 可读、可 diff | 目的是交接与年度对比，不是给机器消费 | 报告体积略大 |
+
+这些取舍与 [`SECURITY.md`](SECURITY.md) 的数据边界说明一致：不收集、不上传、不埋点。
 
 ---
 
@@ -102,7 +166,9 @@ value  ∈ { present: 1, partial: 0.5, missing: 0 }   // status = na 时不计�
 
 ## 快速开始
 
-无需安装依赖、无需构建，双击打开即可：
+**在线体验（推荐）：** <https://zhetai.github.io/offshore-exemption-selfcheck-demo/> —— 无需安装、无需注册。
+
+本地运行无需依赖、无需构建，双击打开即可：
 
 ```bash
 # 方式一：直接打开
@@ -156,12 +222,15 @@ npm test
 | 导出 | `Blob` + `URL.createObjectURL`、`window.print()` | 浏览器原生能力，不引入 PDF 库 |
 | 字体 | 系统字体栈 | 无外链字体，离线可用 |
 
+**质量信号。** 评分内核（加权、门禁、10 条一致性规则）由 **19 个纯函数单元测试**覆盖，`node tests/scoring.test.js` 可零依赖复现——不需要安装任何包。
+
 ## 目录结构
 
 ```
 .
 ├── index.html                      # 单页应用入口
 ├── assets
+│   ├── screenshot-main.png         # README 首屏主截图（1360×840）
 │   ├── css
 │   │   └── styles.css              # 主题、布局、打印样式
 │   └── js
@@ -220,6 +289,22 @@ npm test
 - **不含签署与存证。** 不做电子签名、时间戳或哈希存证；导出的 JSON 仅作内部归档参考。
 - **数据仅在本机。** 全部状态存于浏览器 `localStorage`，清理浏览器数据即丢失，且不提供跨设备同步。
 - **演示范围。** 未实现多用户、权限、后端存储、审计日志；如用于生产环境需另行设计。
+
+## English at a glance
+
+**What it is.** A single-page, zero-dependency self-check for the evidence package behind a Hong Kong offshore profits claim. It does not give tax advice — it tells you which documents are still missing, and which gaps are blocking the file.
+
+- **4 claim profiles** (trading, service/commission, manufacturing, IP) → 21–24 applicable items out of 26.
+- **Weighted readiness score with blocking gates**: a missing bill of lading or income reconciliation halts the file even at 70/100 — by design.
+- **10 consistency rules**, e.g. revenue recognised without matching bank statements, or a related-party list with no pricing support.
+- **Exports**: JSON for archival/diffing, print-to-PDF for hand-off. Nothing leaves the browser: no network calls, no analytics.
+- **Verified**: 19 pure-function unit tests via `node tests/scoring.test.js`, zero dependencies.
+
+**Try it.** Online demo is not deployed yet (see the release checklist in [`DEMO.md`](DEMO.md)); locally, open `index.html` or run `python -m http.server 8080`.
+
+**Scope & disclaimer.** Documentation completeness only — not tax, legal or accounting advice, and no guarantee an offshore claim will be accepted. Consult a practising tax adviser before filing.
+
+**Stack.** Vanilla HTML/CSS/JS + `localStorage`, no build step.
 
 ## License
 
