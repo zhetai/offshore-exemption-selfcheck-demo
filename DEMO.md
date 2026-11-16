@@ -57,15 +57,27 @@ $chrome = "C:\Program Files\Google\Chrome\Application\chrome.exe"
   --screenshot="assets\screenshot-main.png" "file:///$PWD/index.html"
 ```
 
-## 可选的 GIF
+## 演示 GIF
 
-录屏工具建议：Windows 用 [ScreenToGif](https://www.screentogif.com/) 或 Win+G；macOS 用 Kap。要求：
+仓库已包含 `assets/demo.gif`（**10.8 秒 / 900×506 / 4.4 MB / 48 帧**），嵌入 README 首屏的 `<details>` 折叠块，默认折叠、不拖慢首屏加载。
 
-- 时长 ≤ 15 秒，宽度 ≤ 1200px，文件 ≤ 3 MB；
-- 只演示步骤 4（补一项关键材料 → 结论变化）这一段，信息密度最高；
-- 输出为 `assets/demo.gif`（README 的 `<details>` 折叠块已预留引用，放入后取消注释即可）。
+录制内容是一次真实操作，不是合成的动画：
 
-## 发布清单（在线演示 / 60 秒视频）
+1. 初始状态：85 分、`存在阻断项，暂不可提交`（关键材料「公司注册与商业登记文件」缺失）
+2. 点击该项 → 齐备：阻断错误消失，评分上升
+3. 补齐「集团架构图（含境外关联公司）」→ 齐备
+4. 补齐「董事会会议记录」→ 齐备
+5. 评分环与结论翻转：**95 分、材料齐备，可安排复核**（红 → 青），并短暂放大高亮评分区
+
+### 演示素材说明
+
+- **生成方式：** LLM agent 通过 Chrome DevTools Protocol 驱动无头 Chrome（1280×720）访问本地 `index.html`，用**真实鼠标事件**点击真实控件，按 80–100 ms 间隔抓帧，再用 Pillow 合成 GIF。
+- **未使用 pagecast / demsmith-mcp：** 环境不具备条件（详见交付报告 `reports/remote_demo_capture_report.json`）：`@mcpware/pagecast` 的 postinstall 是 POSIX-only 脚本、Windows 上安装即失败，且它依赖 Playwright 自带 Chromium 与系统 `ffmpeg`；`demsmith-mcp` 在 npm 上不存在（404）。
+- **光标与高亮：** 录制时注入了一层临时的光标/点击涟漪/放大高亮（仅在浏览器内存中，**不写入仓库代码**）。
+- **数据：** 全程使用脱敏示例个案 `Sample Case A（脱敏）`，不含任何真实客户、合同或申报数据。**这不是客户录屏**，而是对演示页的自动重放。
+- **可复现性：** 抓帧与合成脚本不随仓库发布；如需重录，可按上面的步骤手动操作并录屏，效果一致。
+
+## 发布清单（在线演示 / 演示素材）
 
 **当前状态：在线演示已上线 ✅** —— <https://zhetai.github.io/offshore-exemption-selfcheck-demo/>
 
@@ -82,13 +94,13 @@ $chrome = "C:\Program Files\Google\Chrome\Application\chrome.exe"
 | Cloudflare Pages | Direct Upload，上传仓库根目录（`index.html` + `assets/`） | `https://<project>.pages.dev` |
 | Netlify Drop | 拖拽文件夹上传 | `https://<name>.netlify.app` |
 
-剩余待办：
+状态：
 
 1. ~~把 README 顶部 CTA 表格中的在线演示占位替换为真实链接~~ ✅ 已完成；
-2. 录制 ≤ 60 秒讲解视频（Loom 不公开链接即可），替换 README CTA 的「🔧 待录制」一行；
-3. 录制 `assets/demo.gif` 并替换 README 折叠块中的说明文字。
+2. ~~录制 `assets/demo.gif` 并嵌入 README~~ ✅ 已完成（本次）；
+3. 可选的 60 秒讲解视频（Loom 不公开链接）：需要时按上面 6 段节奏录制，并在 README CTA 表格中新增一行指向该链接。
 
-> 🔧 `human_action_required`：视频链接与 `assets/demo.gif` 两项需人工提供。在线演示已可用，请直接分享 <https://zhetai.github.io/offshore-exemption-selfcheck-demo/>。
+> 首屏已具备「在线演示 + 15 秒 GIF + 真实截图」三件套，作品集可直接使用；讲解视频属于加分项，不再是阻塞项。
 
 ## Upwork 作品集文案（可直接复制）
 

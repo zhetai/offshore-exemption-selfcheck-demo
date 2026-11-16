@@ -13,26 +13,26 @@
 | 直接体验 | 入口 | 状态 |
 | --- | --- | --- |
 | ▶ 在线演示（免安装） | **<https://zhetai.github.io/offshore-exemption-selfcheck-demo/>** | ✅ 已上线 · GitHub Pages，随 `main` 自动部署 |
-| 🎬 60 秒演示视频 | Loom / YouTube（不公开） | 🔧 **待录制** · human action required |
+| 🎬 15 秒演示 GIF | [观看演示 ↓](#demo-gif)（4.4 MB，折叠加载） | ✅ 已录制 · 无头浏览器按真实交互生成 |
 
 > 在线演示无需注册、无需下载，打开即用；页面由 GitHub Pages 直接托管 `index.html`，渲染结果与仓库内截图逐字节一致。
 >
-> 🔧 视频入口仍是占位项，录制后替换即可（见 [`DEMO.md`](DEMO.md) 的发布清单）。
+> GIF 从「材料缺失、不可提交」走到「材料齐备、可安排复核」，全程是真实点击，录制方式见 [`DEMO.md`](DEMO.md#演示素材说明)。
 
 **Demo only.** 仅做材料完整性自检，不构成税务或法律意见，不保证离岸豁免获批。
 
 <img src="assets/screenshot-main.png" alt="离岸豁免材料自检工具主界面：左侧为评分环、结论与检查提示，右侧为 7 个类别共 26 个证据项的状态清单" width="100%">
 
-<p align="center"><sub>脱敏示例个案：70 分、存在阻断项 —— 分数不低，但结论仍是「暂不可提交」，因为关键材料缺失优先于总分。</sub></p>
+<p align="center"><sub>同一个自检台：左侧是评分与结论，右侧是逐项证据的状态。下方 GIF 展示补齐关键材料后结论翻转的过程。</sub></p>
 
-<details>
-<summary>🎬 10–15 秒核心交互演示（GIF 待补充）</summary>
+<details id="demo-gif">
+<summary>🎬 查看 15 秒演示 GIF（10.8 秒 / 900×506 / 4.4 MB）</summary>
 
-**human action required** — 录制「补一项关键材料 → 结论从阻断变为待复核」的 10–15 秒片段，保存为 `assets/demo.gif`（≤ 3 MB），然后用下面这段替换本段文字：
+<img src="assets/demo.gif" alt="演示：从 85 分但存在阻断项，补齐三项材料后变为 95 分、材料齐备可安排复核" width="100%">
 
-```html
-<img src="assets/demo.gif" alt="补一项关键材料后，结论从阻断变为待复核" width="100%">
-```
+分三步完成一次真实操作：把缺失的关键材料「公司注册与商业登记文件」标记为齐备 → 补齐「集团架构图」与「董事会会议记录」→ 评分环由红转青，结论从「存在阻断项，暂不可提交」变为「材料齐备，可安排复核」。
+
+> 该 GIF 由无头浏览器自动执行真实点击录制，不是客户录屏，也不含任何真实个案数据；录制方法见 [`DEMO.md`](DEMO.md#演示素材说明)。
 
 </details>
 
@@ -201,6 +201,12 @@ npm test
 
 ## 演示截图/GIF
 
+**15 秒交互演示 GIF**（首屏折叠块中亦可直接观看）：
+
+![演示 GIF](assets/demo.gif)
+
+静态截图：
+
 | 主界面（1440×1080） | 窄屏（520×1600） |
 | --- | --- |
 | ![主界面](docs/screenshots/overview.png) | ![窄屏](docs/screenshots/mobile.png) |
@@ -209,7 +215,7 @@ npm test
 
 ![完整清单](docs/screenshots/full-page.png)
 
-截图由 Chrome 无头模式对 `index.html` 直接渲染生成，未做任何后期修补。如需替换或补充 GIF，见 [`docs/screenshots/README.md`](docs/screenshots/README.md)。
+截图由 Chrome 无头模式对 `index.html` 直接渲染生成，未做任何后期修补；GIF 由无头浏览器执行真实点击录制，生成方式与重录步骤见 [`DEMO.md`](DEMO.md#演示素材说明)。
 
 ## 技术栈
 
@@ -300,7 +306,7 @@ npm test
 - **Exports**: JSON for archival/diffing, print-to-PDF for hand-off. Nothing leaves the browser: no network calls, no analytics.
 - **Verified**: 19 pure-function unit tests via `node tests/scoring.test.js`, zero dependencies.
 
-**Try it.** Online demo is not deployed yet (see the release checklist in [`DEMO.md`](DEMO.md)); locally, open `index.html` or run `python -m http.server 8080`.
+**Try it.** Live demo: <https://zhetai.github.io/offshore-exemption-selfcheck-demo/> — or locally, open `index.html` / run `python -m http.server 8080`. A 15-second recorded walkthrough is embedded at the top of this README.
 
 **Scope & disclaimer.** Documentation completeness only — not tax, legal or accounting advice, and no guarantee an offshore claim will be accepted. Consult a practising tax adviser before filing.
 
